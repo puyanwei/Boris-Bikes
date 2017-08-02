@@ -13,4 +13,14 @@ describe Bike do
     bike = Bike.new
     expect(bike).to respond_to(:working?)
   end
+
+  it "Recognises docking of bike" do
+    docking_station = DockingStation.new
+    expect(docking_station).to respond_to(:dock_bike)
+  end
+
+  it "Bike is docked" do
+    docking_station = DockingStation.new
+    expect(docking_station).to respond_to(:isDocked)
+  end
 end
