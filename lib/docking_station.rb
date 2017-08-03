@@ -14,6 +14,9 @@ attr_accessor :bikes
   end
 
   def dock_bike
+    if @bikes.length > 1
+      raise "No docking slots available"
+    end
   end
 
   def isDocked

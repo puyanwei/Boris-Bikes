@@ -16,10 +16,16 @@ describe DockingStation do
     expect(docking_station).to respond_to(:isDocked)
   end
 
-  it "There are no bikes" do
+  it "No bikes available" do
     docking_station = DockingStation.new
     docking_station.bikes = []
     expect {docking_station.release_bike}.to raise_error("No bikes available")
+  end
+
+  it "No docking slots available" do
+    docking_station = DockingStation.new
+    docking_station.bikes = [1,1]
+    expect {docking_station.dock_bike}.to raise_error("No docking slots available")
   end
 end
 
