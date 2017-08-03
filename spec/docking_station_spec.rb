@@ -19,13 +19,13 @@ describe DockingStation do
   it "No bikes available" do
     docking_station = DockingStation.new
     docking_station.bikes = []
-    expect {docking_station.release_bike}.to raise_error("No bikes available")
+    expect {docking_station.release_bike}.to raise_error "No bikes available"
   end
 
   it "No docking slots available" do
     docking_station = DockingStation.new
-    docking_station.bikes = [1,1]
-    expect {docking_station.dock_bike}.to raise_error("No docking slots available")
+    20.times {docking_station.dock_bike Bike.new}
+    expect {docking_station.dock_bike Bike.new}.to raise_error "No docking slots available"
   end
 end
 

@@ -1,9 +1,11 @@
 class DockingStation
 
 attr_accessor :bikes
+DEFAULT_CAPACITY = 20
 
-  def initialize
+  def initialize()
     @bikes = []
+    @capacity = DEFAULT_CAPACITY
   end
 
   def release_bike
@@ -13,9 +15,11 @@ attr_accessor :bikes
     end
   end
 
-  def dock_bike
-    if @bikes.length > 1
+  def dock_bike(bike)
+    if @bikes.length >= @capacity
       raise "No docking slots available"
+    else
+      @bikes << bike
     end
   end
 
