@@ -3,29 +3,33 @@ require_relative '../lib/bike'
 
 describe DockingStation do
   it "Recognises release_bike" do
-    docking_station = DockingStation.new
-    expect(docking_station).to respond_to(:release_bike)
+    expect(subject).to respond_to(:release_bike)
   end
   it "Recognises docking of bike" do
-    docking_station = DockingStation.new
-    expect(docking_station).to respond_to(:dock_bike)
+    expect(subject).to respond_to(:dock_bike)
   end
 
   it "Bike is docked" do
-    docking_station = DockingStation.new
-    expect(docking_station).to respond_to(:isDocked)
+    expect(subject).to respond_to(:isDocked)
   end
 
   it "No bikes available" do
-    docking_station = DockingStation.new
-    docking_station.bikes = []
-    expect {docking_station.release_bike}.to raise_error "No bikes available"
+    subject.bikes = []
+    expect {subject.release_bike}.to raise_error "No bikes available"
   end
 
   it "No docking slots available" do
-    docking_station = DockingStation.new
-    20.times {docking_station.dock_bike Bike.new}
-    expect {docking_station.dock_bike Bike.new}.to raise_error "No docking slots available"
+    20.times {subject.dock_bike Bike.new}
+    expect {subject.dock_bike Bike.new}.to raise_error "No docking slots available"
+  end
+
+  it "Sets default capacity number for docking stations when no arguments passed" do
+    expect(subject.capacity).to eq 20
+  end
+
+  it "Sets custom capacity number for docking stations" do
+    station = DockingStation.new(10)
+    expect(station.capacity).to eq 10
   end
 end
 

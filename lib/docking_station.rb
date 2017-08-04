@@ -1,6 +1,6 @@
 class DockingStation
 
-attr_accessor :bikes
+attr_accessor :bikes, :capacity
 DEFAULT_CAPACITY = 20
 
   def initialize(capacity=DEFAULT_CAPACITY)
@@ -18,7 +18,6 @@ DEFAULT_CAPACITY = 20
   def dock_bike(bike)
     raise "No docking slots available" if full?
     @bikes << bike
-    end
   end
 
   def isDocked
