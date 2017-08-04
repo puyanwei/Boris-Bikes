@@ -5,6 +5,7 @@ DEFAULT_CAPACITY = 20
 
   def initialize(capacity=DEFAULT_CAPACITY)
     @bikes = []
+    @broken = []
     @capacity = capacity
   end
 
@@ -15,9 +16,9 @@ DEFAULT_CAPACITY = 20
     end
   end
 
-  def dock_bike(bike)
+  def dock_bike(bike, working?=true)
     raise "No docking slots available" if full?
-    @bikes << bike
+    working? ? @bikes << bike : @broken << bike
   end
 
   def isDocked
